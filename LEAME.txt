@@ -1,0 +1,20 @@
+Hola, 
+En esta carpeta encontrará
+
+Archivos de código fuente:
+*main.cpp
+*Genoma.hxx
+*Genoma.h
+*Fasta.h
+*CodigoGenetico.h
+*CodigoGenetico.hxx
+
+Como tambien encontrará archivos de prueba para el proyecto que estan en formato .fa:
+*Fasta.fa
+*empty.fa
+*test.fa
+
+Por ultimo el documento de explicación de las estructuras del proyecto:
+*Documento de diseño. Entrega 1.pdf
+
+Recompilar al usar
