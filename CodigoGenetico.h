@@ -1,14 +1,13 @@
 #ifndef __CODIGOGENETICO__H__
 #define __CODIGOGENETICO__H__
 
-
 #include <vector>
 
 using namespace std;
 
 
 class CodigoGenetico{
-
+  
   public: 
 
     string getDescripcion();
