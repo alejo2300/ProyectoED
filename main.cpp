@@ -234,14 +234,14 @@ void ayuda()
 {
 	cout<<"_________________________________________"<<endl<<endl;
 	cout<<"Lista de Comandos Existentes : "<<endl;
-	cout<<"> Cargar"<<endl;
-	cout<<"> Conteo"<<endl;
-	cout<<"> Listar_Secuencias"<<endl;
-	cout<<"> Histograma"<<endl;
-	cout<<"> es_subsecuencia"<<endl;
-	cout<<"> enmascarar"<<endl;
-	cout<<"> guardar"<<endl;
-	cout<<"> salir"<<endl;
+	cout<<"> Cargar (Cargar nombre_archivo) "<<endl;
+	cout<<"> Conteo (Conteo) "<<endl;
+	cout<<"> Listar_Secuencias (Listar_secuencias) "<<endl;
+	cout<<"> Histograma (Histograma descripcion_secuencia) "<<endl;
+	cout<<"> es_subsecuencia (es_subsecuencia secuencia) "<<endl;
+	cout<<"> enmascarar (enmascarar secuencia) "<<endl;
+	cout<<"> guardar (guardar nombre_archivo) "<<endl;
+	cout<<"> salir (salir)"<<endl;
 	cout<<"_________________________________________"<<endl<<endl;
 }
 
