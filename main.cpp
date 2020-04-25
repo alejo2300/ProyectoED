@@ -7,7 +7,7 @@
 #include <vector>
 #include "Fasta.h"
 #include <bits/stdc++.h> 
-
+#include "Hufman.h"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ void dividir_entrada(char entrada[],char* palabra1[], char* palabra2[], char* pa
 int main(){
 
   Fasta faste;
-
+  char digitosdif[4];
 	char entrada[300];
   char* palabra1[300];
   char* palabra2[300];
@@ -108,7 +108,7 @@ int main(){
       if( *palabra2!=NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL){
         // histograma(palabra2);
         flag = false;
-        faste.histograma(*palabra2);
+        faste.histograma(*palabra2,digitosdif);
       }
       else{
         cout<<"Se envio Parametros invalidos"<<endl;
@@ -149,7 +149,19 @@ int main(){
     }
     if(comando == "salir" || comando == "Salir" || comando == "SALIR")
     {
-        return -1;
+     cout<<sizeof(digitosdif)<<endl;  
+     for(int j=0; j<10; j++){
+   cout<< digitosdif[j]<<endl;
+      }
+
+        char arr[] = { 'b', 'b', 'c', 'd', 'e', 'f' }; 
+    int freq[] = { 5, 9, 12,23}; 
+  
+    int size = sizeof(digitosdif) / sizeof(digitosdif[0]); 
+  
+    HuffmanCodes(digitosdif, freq, size); 
+     
+    return 0; 
     }
 
     if(comando == "codificar" || comando == "Codificar" || comando == "CODIFICAR")

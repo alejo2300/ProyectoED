@@ -183,8 +183,9 @@ void listar_secuencias(){
   cout<<"\n";
 }
 
-void histograma(char *nombre_histograma)
+void histograma(char *nombre_histograma,char digitosdif[])
 {
+  int posva=0;
   for(int i=0; i<vectorGenomas.size(); i++){
     Genoma gnma = vectorGenomas[i];
     vector<CodigoGenetico> codigosGeneticosActual = gnma.getVectorDeCodigosGeneticos();
@@ -267,10 +268,28 @@ void histograma(char *nombre_histograma)
         if(secuenciaActual[k]=='N'){
           N++;
         }
+        bool banderita=false;
+        for (int h=0;h<300;h++)
+        {
+           if(secuenciaActual[k]==digitosdif[h])
+           {
+             banderita=true;
+           }  
+
+        }
+        if (!banderita)
+        {
+          digitosdif[posva]=secuenciaActual[k];
+          posva++;
+        }
+
+
       }
       cout<<"Adenina: "<<"\t"<<A<<"\t\nCitosina: "<<"\t"<<C<<"\t\nGuanina: "<<"\t"<<G<<"\t\nTimina: "<<"\t"<<T<<"\t\nUracilo: "<<"\t"<<U<<"\t\nA o G: "<<"\t"<<R<<"\t\nC,T o U: "<<"\t"<<Y<<"\t\nG,T o U: "<<"\t"<<K<<"\t\nA o C: "<<"\t"<<M<<"\t\nC o G: "<<"\t"<<S<<"\t\nA,T o U: "<<"\t"<<W<<"\t\nC,G,T o U: "<<"\t"<<B<<"\t\nA,G,T o U: "<<"\t"<<D<<"\t\nA,C,T o U: "<<"\t"<<H<<"\t\nA,C o G: "<<"\t"<<V<<"\t\nA,C,G,T o U: "<<"\t"<<N<<"\t\n";
+      
     }
-    cout<<"\n";
+    cout<<"\n"<<digitosdif[0]<<endl;
+    cout<<digitosdif[1];
   }
 
 
