@@ -178,7 +178,7 @@ int isLeaf(struct MinHeapNode* root)
 // equal to size and inserts all character of 
 // data[] in min heap. Initially size of 
 // min heap is equal to capacity 
-struct MinHeap* createAndBuildMinHeap(char data[], int freq[], int size) 
+struct MinHeap* createAndBuildMinHeap(vector<char> data, vector<int> freq, int size) 
   
 { 
   
@@ -194,7 +194,7 @@ struct MinHeap* createAndBuildMinHeap(char data[], int freq[], int size)
 } 
   
 // The main function that builds Huffman tree 
-struct MinHeapNode* buildHuffmanTree(char data[], int freq[], int size) 
+struct MinHeapNode* buildHuffmanTree(vector<char> data, vector<int> freq, int size) 
   
 { 
     struct MinHeapNode *left, *right, *top; 
@@ -266,7 +266,7 @@ void printCodes(struct MinHeapNode* root, int arr[], int top)
 // The main function that builds a 
 // Huffman Tree and print codes by traversing 
 // the built Huffman Tree 
-void HuffmanCodes(char data[], int freq[], int size) 
+void HuffmanCodes(vector<char> data, vector<int> freq, int size) 
   
 { 
     // Construct Huffman Tree 

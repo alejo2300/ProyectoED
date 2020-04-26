@@ -183,7 +183,7 @@ void listar_secuencias(){
   cout<<"\n";
 }
 
-void histograma(char *nombre_histograma,char digitosdif[])
+vector<int> histograma(char *nombre_histograma,vector<char> & digitosdif)
 {
   int posva=0;
   for(int i=0; i<vectorGenomas.size(); i++){
@@ -202,9 +202,13 @@ void histograma(char *nombre_histograma,char digitosdif[])
       break;
     }
       vector<char> secuenciaActual = codigosGeneticosActual[posSecuence].getCodigos();
+
+      
+      
       int counter=0;
       int A=0,C=0,G=0,T=0,U=0,R=0,Y=0,K=0,M=0,S=0,W=0,B=0,D=0,H=0,V=0,N=0;
       for (int k=0;k<secuenciaActual.size();k++){
+        
         if(secuenciaActual[k]=='A'){
           A++;
         }
@@ -268,28 +272,76 @@ void histograma(char *nombre_histograma,char digitosdif[])
         if(secuenciaActual[k]=='N'){
           N++;
         }
+        
         bool banderita=false;
-        for (int h=0;h<300;h++)
+        for (int h=0;h<digitosdif.size();h++)
         {
+          
            if(secuenciaActual[k]==digitosdif[h])
            {
              banderita=true;
            }  
 
         }
+      
         if (!banderita)
         {
-          digitosdif[posva]=secuenciaActual[k];
+          cout<<secuenciaActual[k]<<"fabio"<<endl;
+
+          digitosdif.push_back(secuenciaActual[k]);
+          
           posva++;
         }
-
+  
 
       }
+     
+
+
       cout<<"Adenina: "<<"\t"<<A<<"\t\nCitosina: "<<"\t"<<C<<"\t\nGuanina: "<<"\t"<<G<<"\t\nTimina: "<<"\t"<<T<<"\t\nUracilo: "<<"\t"<<U<<"\t\nA o G: "<<"\t"<<R<<"\t\nC,T o U: "<<"\t"<<Y<<"\t\nG,T o U: "<<"\t"<<K<<"\t\nA o C: "<<"\t"<<M<<"\t\nC o G: "<<"\t"<<S<<"\t\nA,T o U: "<<"\t"<<W<<"\t\nC,G,T o U: "<<"\t"<<B<<"\t\nA,G,T o U: "<<"\t"<<D<<"\t\nA,C,T o U: "<<"\t"<<H<<"\t\nA,C o G: "<<"\t"<<V<<"\t\nA,C,G,T o U: "<<"\t"<<N<<"\t\n";
       
+      vector<int> repeticiones;
+    //Salvando todo en una lista repeticiones
+
+
+      digitosdif.push_back('U');
+      digitosdif.push_back('R');
+      digitosdif.push_back('Y');
+      digitosdif.push_back('K');
+      digitosdif.push_back('M');
+      digitosdif.push_back('S');
+      digitosdif.push_back('W');
+      digitosdif.push_back('B');
+      digitosdif.push_back('D');
+      digitosdif.push_back('H');
+      digitosdif.push_back('V');
+      digitosdif.push_back('N');
+    
+      repeticiones.push_back(A);
+      repeticiones.push_back(C);
+      repeticiones.push_back(G);
+      repeticiones.push_back(T);
+      repeticiones.push_back(U);
+      repeticiones.push_back(R);
+      repeticiones.push_back(Y);
+      repeticiones.push_back(K);
+      repeticiones.push_back(M);
+      repeticiones.push_back(S);
+      repeticiones.push_back(W);
+      repeticiones.push_back(B);
+      repeticiones.push_back(D);
+      repeticiones.push_back(H);
+      repeticiones.push_back(V);
+      repeticiones.push_back(N);
+
+      return repeticiones;
     }
-    cout<<"\n"<<digitosdif[0]<<endl;
-    cout<<digitosdif[1];
+    /*cout<<"\n"<<digitosdif[0]<<endl;
+    cout<<digitosdif[1];*/
+
+    
+    
+    
   }
 
 

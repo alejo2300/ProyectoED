@@ -14,14 +14,14 @@ using namespace std;
 
 
 void ayuda();
-
+std::vector<char> digitosdif;
 void dividir_entrada(char entrada[],char* palabra1[], char* palabra2[], char* palabra3[], char* palabra4[], char* palabra5[],char* palabra6[]);
 
 
 int main(){
 
   Fasta faste;
-  char digitosdif[4];
+  
 	char entrada[300];
   char* palabra1[300];
   char* palabra2[300];
@@ -29,6 +29,9 @@ int main(){
   char* palabra4[300];
   char* palabra5[300];
   char* palabra6[300];
+
+  //Lista de frecuencia para HUFFMAN
+  vector<int> frecuencia;
 
   *palabra2=NULL;
   *palabra3=NULL;
@@ -108,7 +111,8 @@ int main(){
       if( *palabra2!=NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL){
         // histograma(palabra2);
         flag = false;
-        faste.histograma(*palabra2,digitosdif);
+        frecuencia.clear();
+        frecuencia = faste.histograma(*palabra2,digitosdif);
       }
       else{
         cout<<"Se envio Parametros invalidos"<<endl;
@@ -122,7 +126,7 @@ int main(){
       }
       else{
         cout<<"Se envio Parametros invalidos"<<endl;
-      }
+       }
     }
 	  if(comando == "enmascarar" || comando == "Enmascarar" || comando == "ENMASCARAR"){
       if(*palabra2!=NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL){
@@ -149,18 +153,37 @@ int main(){
     }
     if(comando == "salir" || comando == "Salir" || comando == "SALIR")
     {
-     cout<<sizeof(digitosdif)<<endl;  
-     for(int j=0; j<10; j++){
-   cout<< digitosdif[j]<<endl;
-      }
+     cout<<sizeof(digitosdif)<<endl<<endl; //24
+     cout<<digitosdif.size()<<endl;
+    
+//recorre lo que contiene el vector 
 
-        char arr[] = { 'b', 'b', 'c', 'd', 'e', 'f' }; 
-    int freq[] = { 5, 9, 12,23}; 
-  
-    int size = sizeof(digitosdif) / sizeof(digitosdif[0]); 
-  
-    HuffmanCodes(digitosdif, freq, size); 
+/*
+      for (std::vector<char>::iterator it = digitosdif.begin() ; it != digitosdif.end(); ++it)
+      {
+        std::cout << ' ' << *it;
+  std::cout << '\n';
+      }
+    
+*/
+
      
+     
+    
+
+  
+   // int size = sizeof(digitosdif) / sizeof(digitosdif[0]); 
+int size = digitosdif.size() / sizeof(digitosdif[0]); 
+
+    HuffmanCodes(digitosdif, frecuencia, size); 
+    
+   
+    cout<<"\n";
+    for(int i=0;i<frecuencia.size();i++){
+      cout<<frecuencia[i]<<" ";
+    }
+
+
     return 0; 
     }
 
