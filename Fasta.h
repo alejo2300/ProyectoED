@@ -304,7 +304,7 @@ vector<int> histograma(char *nombre_histograma,vector<char> & digitosdif)
     //Salvando todo en una lista repeticiones
 
 
-      digitosdif.push_back('U');
+      /*digitosdif.push_back('U');
       digitosdif.push_back('R');
       digitosdif.push_back('Y');
       digitosdif.push_back('K');
@@ -315,7 +315,7 @@ vector<int> histograma(char *nombre_histograma,vector<char> & digitosdif)
       digitosdif.push_back('D');
       digitosdif.push_back('H');
       digitosdif.push_back('V');
-      digitosdif.push_back('N');
+      digitosdif.push_back('N');*/
     
       repeticiones.push_back(A);
       repeticiones.push_back(C);
