@@ -33,6 +33,8 @@ int main(){
   //Lista de frecuencia para HUFFMAN
   vector<int> frecuencia;
 
+  int frecs[16]={0};
+  char bass[16]={'A','C','G','T','U','R','Y','K','M','S','W','B','D','H','V','N'};
   *palabra2=NULL;
   *palabra3=NULL;
   *palabra4=NULL;
@@ -183,7 +185,7 @@ int main(){
 
    // int size = sizeof(digitosdif) / sizeof(digitosdif[0]);
    int size = digitosdif.size() / sizeof(digitosdif[0]);
-    HuffmanCodes(digitosdif, frecuencia, size);
+    //HuffmanCodes(digitosdif, frecuencia, size);
     cout<<"\n";
 
 
@@ -251,12 +253,19 @@ int main(){
     if(comando == "HUFFMAN"||comando == "Huffman"||comando == "huffman"){
       if(*palabra2==NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL)
       {
-        frecuencia = faste.frecuenciaSecuencias(digitosdif);
-
+        frecuencia = faste.frecuenciaSecuencias(digitosdif,frecs);
+        vector<char> cpybas;
+        vector<int> cpyfre;
         //Impresion de frecuencia y su lectura
-        for(int i=0;i<frecuencia.size();i++){
-          cout<<digitosdif[i]<<": "<<frecuencia[i]<<"\n";
+        cout<<"\nCONTEO DE TODO EN MEMORIA\n";
+        for(int i=0;i<16;i++){
+          cout<<bass[i]<<": "<<frecs[i]<<"\n";
+          cpybas.push_back(bass[i]);
+          cpyfre.push_back(frecs[i]);
         }
+        cout<<"\n\nPOSICIONES DE HUFFMAN\n";
+        int size = cpybas.size() / sizeof(cpybas[1]);
+        HuffmanCodes(cpybas, cpyfre, size);
       }
         else{
           cout<<"Se envio Parametros invalidosaaa"<<endl;

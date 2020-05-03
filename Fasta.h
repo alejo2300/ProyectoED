@@ -310,7 +310,7 @@ void histograma(char *nombre_histograma,vector<char> & digitosdif)
 
   }
 
-vector<int> frecuenciaSecuencias(vector<char> & digitosdif){
+vector<int> frecuenciaSecuencias(vector<char> & digitosdif,int frecs[16]){
   int counter=0;
   int A=0,C=0,G=0,T=0,U=0,R=0,Y=0,K=0,M=0,S=0,W=0,B=0,D=0,H=0,V=0,N=0;
 
@@ -414,7 +414,7 @@ vector<int> frecuenciaSecuencias(vector<char> & digitosdif){
 
 
 
-      cout<<"Adenina: "<<"\t"<<A<<"\t\nCitosina: "<<"\t"<<C<<"\t\nGuanina: "<<"\t"<<G<<"\t\nTimina: "<<"\t"<<T<<"\t\nUracilo: "<<"\t"<<U<<"\t\nA o G: "<<"\t"<<R<<"\t\nC,T o U: "<<"\t"<<Y<<"\t\nG,T o U: "<<"\t"<<K<<"\t\nA o C: "<<"\t"<<M<<"\t\nC o G: "<<"\t"<<S<<"\t\nA,T o U: "<<"\t"<<W<<"\t\nC,G,T o U: "<<"\t"<<B<<"\t\nA,G,T o U: "<<"\t"<<D<<"\t\nA,C,T o U: "<<"\t"<<H<<"\t\nA,C o G: "<<"\t"<<V<<"\t\nA,C,G,T o U: "<<"\t"<<N<<"\t\n";
+      //cout<<"Adenina: "<<"\t"<<A<<"\t\nCitosina: "<<"\t"<<C<<"\t\nGuanina: "<<"\t"<<G<<"\t\nTimina: "<<"\t"<<T<<"\t\nUracilo: "<<"\t"<<U<<"\t\nA o G: "<<"\t"<<R<<"\t\nC,T o U: "<<"\t"<<Y<<"\t\nG,T o U: "<<"\t"<<K<<"\t\nA o C: "<<"\t"<<M<<"\t\nC o G: "<<"\t"<<S<<"\t\nA,T o U: "<<"\t"<<W<<"\t\nC,G,T o U: "<<"\t"<<B<<"\t\nA,G,T o U: "<<"\t"<<D<<"\t\nA,C,T o U: "<<"\t"<<H<<"\t\nA,C o G: "<<"\t"<<V<<"\t\nA,C,G,T o U: "<<"\t"<<N<<"\t\n";
 
       vector<int> repeticiones;
 
@@ -434,6 +434,10 @@ vector<int> frecuenciaSecuencias(vector<char> & digitosdif){
       repeticiones.push_back(H);
       repeticiones.push_back(V);
       repeticiones.push_back(N);
+
+      for(int i=0;i<16;i++){
+        frecs[i]=repeticiones[i];
+      }
 
       return repeticiones;
     }
