@@ -203,12 +203,12 @@ vector<int> histograma(char *nombre_histograma,vector<char> & digitosdif)
     }
       vector<char> secuenciaActual = codigosGeneticosActual[posSecuence].getCodigos();
 
-      
-      
+
+
       int counter=0;
       int A=0,C=0,G=0,T=0,U=0,R=0,Y=0,K=0,M=0,S=0,W=0,B=0,D=0,H=0,V=0,N=0;
       for (int k=0;k<secuenciaActual.size();k++){
-        
+
         if(secuenciaActual[k]=='A'){
           A++;
         }
@@ -272,34 +272,34 @@ vector<int> histograma(char *nombre_histograma,vector<char> & digitosdif)
         if(secuenciaActual[k]=='N'){
           N++;
         }
-        
+
         bool banderita=false;
         for (int h=0;h<digitosdif.size();h++)
         {
-          
+
            if(secuenciaActual[k]==digitosdif[h])
            {
              banderita=true;
-           }  
+           }
 
         }
-      
+
         if (!banderita)
         {
-          cout<<secuenciaActual[k]<<"fabio"<<endl;
+          //cout<<secuenciaActual[k]<<"fabio"<<endl;
 
           digitosdif.push_back(secuenciaActual[k]);
-          
+
           posva++;
         }
-  
+
 
       }
-     
+
 
 
       cout<<"Adenina: "<<"\t"<<A<<"\t\nCitosina: "<<"\t"<<C<<"\t\nGuanina: "<<"\t"<<G<<"\t\nTimina: "<<"\t"<<T<<"\t\nUracilo: "<<"\t"<<U<<"\t\nA o G: "<<"\t"<<R<<"\t\nC,T o U: "<<"\t"<<Y<<"\t\nG,T o U: "<<"\t"<<K<<"\t\nA o C: "<<"\t"<<M<<"\t\nC o G: "<<"\t"<<S<<"\t\nA,T o U: "<<"\t"<<W<<"\t\nC,G,T o U: "<<"\t"<<B<<"\t\nA,G,T o U: "<<"\t"<<D<<"\t\nA,C,T o U: "<<"\t"<<H<<"\t\nA,C o G: "<<"\t"<<V<<"\t\nA,C,G,T o U: "<<"\t"<<N<<"\t\n";
-      
+
       vector<int> repeticiones;
     //Salvando todo en una lista repeticiones
 
@@ -316,7 +316,7 @@ vector<int> histograma(char *nombre_histograma,vector<char> & digitosdif)
       digitosdif.push_back('H');
       digitosdif.push_back('V');
       digitosdif.push_back('N');*/
-    
+
       repeticiones.push_back(A);
       repeticiones.push_back(C);
       repeticiones.push_back(G);
@@ -339,11 +339,139 @@ vector<int> histograma(char *nombre_histograma,vector<char> & digitosdif)
     /*cout<<"\n"<<digitosdif[0]<<endl;
     cout<<digitosdif[1];*/
 
-    
-    
-    
+
+
+
   }
 
+vector<int> frecuenciaSecuencias(vector<char> & digitosdif){
+  int counter=0;
+  int A=0,C=0,G=0,T=0,U=0,R=0,Y=0,K=0,M=0,S=0,W=0,B=0,D=0,H=0,V=0,N=0;
+  
+  for(int i=0; i<vectorGenomas.size(); i++){
+    Genoma gnma = vectorGenomas[i];
+    vector<CodigoGenetico> codigosGeneticosActual = gnma.getVectorDeCodigosGeneticos();
+
+    for(int j=0; j<codigosGeneticosActual.size(); j++){
+
+      vector<char> secuenciaActual = codigosGeneticosActual[j].getCodigos();
+
+
+
+      for (int k=0;k<secuenciaActual.size();k++){
+
+        if(secuenciaActual[k]=='A'){
+          A++;
+        }
+
+        if(secuenciaActual[k]=='C'){
+          C++;
+        }
+
+        if(secuenciaActual[k]=='G'){
+          G++;
+        }
+
+        if(secuenciaActual[k]=='T'){
+          T++;
+        }
+
+        if(secuenciaActual[k]=='U'){
+          U++;
+        }
+
+        if(secuenciaActual[k]=='R'){
+          R++;
+        }
+
+        if(secuenciaActual[k]=='Y'){
+          Y++;
+        }
+
+        if(secuenciaActual[k]=='K'){
+          K++;
+        }
+
+        if(secuenciaActual[k]=='M'){
+          M++;
+        }
+
+        if(secuenciaActual[k]=='S'){
+          S++;
+        }
+
+        if(secuenciaActual[k]=='W'){
+          W++;
+        }
+
+        if(secuenciaActual[k]=='B'){
+          B++;
+        }
+
+        if(secuenciaActual[k]=='D'){
+          D++;
+        }
+
+        if(secuenciaActual[k]=='H'){
+          H++;
+        }
+
+        if(secuenciaActual[k]=='V'){
+          V++;
+        }
+
+        if(secuenciaActual[k]=='N'){
+          N++;
+        }
+
+        bool banderita=false;
+        for (int h=0;h<digitosdif.size();h++)
+        {
+
+           if(secuenciaActual[k]==digitosdif[h])
+           {
+             banderita=true;
+           }
+
+        }
+
+        if (!banderita)
+        {
+          //cout<<secuenciaActual[k]<<"fabio"<<endl;
+
+          digitosdif.push_back(secuenciaActual[k]);
+
+
+        }
+      }
+      }
+
+
+
+      cout<<"Adenina: "<<"\t"<<A<<"\t\nCitosina: "<<"\t"<<C<<"\t\nGuanina: "<<"\t"<<G<<"\t\nTimina: "<<"\t"<<T<<"\t\nUracilo: "<<"\t"<<U<<"\t\nA o G: "<<"\t"<<R<<"\t\nC,T o U: "<<"\t"<<Y<<"\t\nG,T o U: "<<"\t"<<K<<"\t\nA o C: "<<"\t"<<M<<"\t\nC o G: "<<"\t"<<S<<"\t\nA,T o U: "<<"\t"<<W<<"\t\nC,G,T o U: "<<"\t"<<B<<"\t\nA,G,T o U: "<<"\t"<<D<<"\t\nA,C,T o U: "<<"\t"<<H<<"\t\nA,C o G: "<<"\t"<<V<<"\t\nA,C,G,T o U: "<<"\t"<<N<<"\t\n";
+
+      vector<int> repeticiones;
+
+      repeticiones.push_back(A);
+      repeticiones.push_back(C);
+      repeticiones.push_back(G);
+      repeticiones.push_back(T);
+      repeticiones.push_back(U);
+      repeticiones.push_back(R);
+      repeticiones.push_back(Y);
+      repeticiones.push_back(K);
+      repeticiones.push_back(M);
+      repeticiones.push_back(S);
+      repeticiones.push_back(W);
+      repeticiones.push_back(B);
+      repeticiones.push_back(D);
+      repeticiones.push_back(H);
+      repeticiones.push_back(V);
+      repeticiones.push_back(N);
+
+      return repeticiones;
+    }
+}
 
 int subsecuencia (char *sequence){
   if(conteo()==0){
@@ -351,7 +479,7 @@ int subsecuencia (char *sequence){
   }else{
     char temp[300];
     char temp2[300];
-     strcpy(temp,sequence); 
+     strcpy(temp,sequence);
     int tamano=strlen(temp);
 
     Genoma gem=vectorGenomas[0];
@@ -375,46 +503,46 @@ return contadores;
      cout<<"La subsecuencia dada no existe\n";
      return contadores;
    }
-   
+
   }
-      
+
   }
   return 0;
 }
 
-  string convertToString(char* a, int size) 
-{ 
-    int i; 
-    string s = ""; 
-    for (i = 0; i < size; i++) { 
-        s = s + a[i]; 
-    } 
-    return s; 
-} 
+  string convertToString(char* a, int size)
+{
+    int i;
+    string s = "";
+    for (i = 0; i < size; i++) {
+        s = s + a[i];
+    }
+    return s;
+}
 
-int countFreq(string &pat, string &txt) 
-{ 
-    int M = pat.length(); 
-    int N = txt.length(); 
-    int res = 0; 
-    
-    
-    for (int i = 0; i <= N - M; i++) 
-    {  
-        
-        int j; 
-        for (j = 0; j < M; j++) 
-            if (txt[i+j] != pat[j]) 
-                break; 
-   
-        if (j == M)   
-        { 
-           res++; 
-           j = 0; 
-        } 
-    } 
-    return res; 
-} 
+int countFreq(string &pat, string &txt)
+{
+    int M = pat.length();
+    int N = txt.length();
+    int res = 0;
+
+
+    for (int i = 0; i <= N - M; i++)
+    {
+
+        int j;
+        for (j = 0; j < M; j++)
+            if (txt[i+j] != pat[j])
+                break;
+
+        if (j == M)
+        {
+           res++;
+           j = 0;
+        }
+    }
+    return res;
+}
 
 
 void enmascarar(char* secuencia){
@@ -426,7 +554,7 @@ void enmascarar(char* secuencia){
   bool encontro=false;
   vector<char> nuevo;
   tamano=strlen(secuencia);
-  if(cantSubsecuencias != 0) 
+  if(cantSubsecuencias != 0)
   {
     int cantSubsecuencias = subsecuencia(secuencia);
     int res;
@@ -457,12 +585,12 @@ void enmascarar(char* secuencia){
               secuenciaActual[x]='x';
             }
             codigosGeneticosActual[j].setCodigos(secuenciaActual);
-            
+
             for(int x=0;x<secuenciaActual.size();x++)
             {
               nuevo.push_back(secuenciaActual[x]);
               cout<<secuenciaActual[x];
-            }  
+            }
           }
         }
         cout<<"\n";

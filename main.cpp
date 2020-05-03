@@ -2,11 +2,11 @@
 #include <iostream>
 #include <string.h>
 #include <string>
-#include <algorithm>  
+#include <algorithm>
 #include <fstream>
 #include <vector>
 #include "Fasta.h"
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 #include "Hufman.h"
 
 using namespace std;
@@ -21,7 +21,7 @@ void dividir_entrada(char entrada[],char* palabra1[], char* palabra2[], char* pa
 int main(){
 
   Fasta faste;
-  
+
 	char entrada[300];
   char* palabra1[300];
   char* palabra2[300];
@@ -56,7 +56,7 @@ int main(){
 
 		dividir_entrada(entrada,palabra1,palabra2,palabra3,palabra4,palabra5,palabra6);
     comando = *palabra1;
-    
+
     if(comando == "ayuda" || comando == "Ayuda" || comando == "AYUDA"){
       ayuda();
     }
@@ -94,7 +94,7 @@ int main(){
         cout<<"1 secuencia cargada en memoria\n";
       }
       else if(secuenceCount > 1){
-        cout<<faste.conteo()<<" secuencias cargadas en memoria\n"; 
+        cout<<faste.conteo()<<" secuencias cargadas en memoria\n";
       }
       else if(secuenceCount == 0){
         cout<<"No hay secuencias cargadas en memoria\n";
@@ -112,7 +112,15 @@ int main(){
         // histograma(palabra2);
         flag = false;
         frecuencia.clear();
+
         frecuencia = faste.histograma(*palabra2,digitosdif);
+
+        /*
+        for(int i=0;i<digitosdif.size();i++){
+          cout<<digitosdif[i]<<" ";
+        }
+        */
+
       }
       else{
         cout<<"Se envio Parametros invalidos"<<endl;
@@ -155,8 +163,8 @@ int main(){
     {
      cout<<sizeof(digitosdif)<<endl<<endl; //24
      cout<<digitosdif.size()<<endl;
-    
-//recorre lo que contiene el vector 
+
+//recorre lo que contiene el vector
 
 /*
       for (std::vector<char>::iterator it = digitosdif.begin() ; it != digitosdif.end(); ++it)
@@ -164,27 +172,26 @@ int main(){
         std::cout << ' ' << *it;
   std::cout << '\n';
       }
-    
+
 */
 
-     
-     
-    
 
-  
-   // int size = sizeof(digitosdif) / sizeof(digitosdif[0]); 
-int size = digitosdif.size() / sizeof(digitosdif[0]); 
 
-    HuffmanCodes(digitosdif, frecuencia, size); 
-    
-   
+
+
+
+   // int size = sizeof(digitosdif) / sizeof(digitosdif[0]);
+   int size = digitosdif.size() / sizeof(digitosdif[0]);
+    HuffmanCodes(digitosdif, frecuencia, size);
     cout<<"\n";
+
+
+    /*
     for(int i=0;i<frecuencia.size();i++){
       cout<<frecuencia[i]<<" ";
     }
-
-
-    return 0; 
+    */
+    return 0;
     }
 
     if(comando == "codificar" || comando == "Codificar" || comando == "CODIFICAR")
@@ -240,6 +247,15 @@ int size = digitosdif.size() / sizeof(digitosdif[0]);
           cout<<"Se envio Parametros invalidos"<<endl;
       }
     }
+    if(comando == "HUFFMAN"||comando == "Huffman"||comando == "huffman"){
+      if(*palabra2!=NULL &&  *palabra3!=NULL  &&  *palabra4!=NULL  &&  *palabra5==NULL  &&*  palabra6==NULL)
+      {
+        faste.frecuenciaSecuencias(digitosdif);
+      }
+        else{
+          cout<<"Se envio Parametros invalidos"<<endl;
+        }
+    }
     if(flag)
     {
         cout<<"Digite un comando valido... "<<endl;
@@ -264,6 +280,7 @@ void ayuda()
 	cout<<"> es_subsecuencia (es_subsecuencia secuencia) "<<endl;
 	cout<<"> enmascarar (enmascarar secuencia) "<<endl;
 	cout<<"> guardar (guardar nombre_archivo) "<<endl;
+  cout<<"> Poner todo en Huffman (Huffman)\n";
 	cout<<"> salir (salir)"<<endl;
 	cout<<"_________________________________________"<<endl<<endl;
 }
