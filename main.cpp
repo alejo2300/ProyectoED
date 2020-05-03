@@ -21,7 +21,7 @@ void dividir_entrada(char entrada[],char* palabra1[], char* palabra2[], char* pa
 int main(){
 
   Fasta faste;
-
+  vector<Retornables> listaHuff;
 	char entrada[300];
   char* palabra1[300];
   char* palabra2[300];
@@ -265,10 +265,23 @@ int main(){
         }
         cout<<"\n\nPOSICIONES DE HUFFMAN\n";
         int size = cpybas.size() / sizeof(cpybas[1]);
-        HuffmanCodes(cpybas, cpyfre, size);
+        listaHuff = HuffmanCodes(cpybas, cpyfre, size);
+
+        //Impersion del arbol de retorno
+        cout<<"\nPRINT DE HUFF\n";
+        for(int i=0 ; i<listaHuff.size() ; i++){
+          cout<<listaHuff[i].base<<": ";
+          vector<int> alistar = listaHuff[i].arista;
+          for(int j=0;j<alistar.size();j++){
+            cout<<alistar[j];
+          }
+          cout<<"\n";
+        }
+
+        flag = false;
       }
         else{
-          cout<<"Se envio Parametros invalidosaaa"<<endl;
+          cout<<"Se envio Parametros invalidos"<<endl;
         }
     }
     if(flag)

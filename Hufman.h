@@ -11,6 +11,7 @@ struct Retornables{
   char base;
   vector<int> arista;
 };
+vector<Retornables> listaHuffa;
 
 //Nodo del arbol
 struct MinHeapNode {
@@ -206,6 +207,11 @@ struct MinHeap* createAndBuildMinHeap(vector<char> data, vector<int> freq, int s
     return minHeap;
 }
 
+vector<Retornables> cargarHuff(Retornables nuevo){
+  listaHuffa.push_back(nuevo);
+  return listaHuffa;
+}
+
 // The main function that builds Huffman tree
 struct MinHeapNode* buildHuffmanTree(vector<char> data, vector<int> freq, int size)
 
@@ -250,7 +256,6 @@ struct MinHeapNode* buildHuffmanTree(vector<char> data, vector<int> freq, int si
 void printCodes(struct MinHeapNode* root, int arr[], int top)
 
 {
-
     // Assign 0 to left edge and recur
     if (root->left) {
 
@@ -269,7 +274,8 @@ void printCodes(struct MinHeapNode* root, int arr[], int top)
     // it contains one of the input
     // characters, print the character
     // and its code from arr[]
-    if (isLeaf(root)) {
+
+      if (isLeaf(root)) {
         Retornables nuevo;
         printf("%c: ", root->data);
         nuevo.base = root->data;
@@ -279,13 +285,16 @@ void printCodes(struct MinHeapNode* root, int arr[], int top)
           cout<<nuevo.arista[i];
         }*/
         cout<<"\n";
+        cargarHuff(nuevo);
     }
+
 }
+
 
 // The main function that builds a
 // Huffman Tree and print codes by traversing
 // the built Huffman Tree
-void HuffmanCodes(vector<char> data, vector<int> freq, int size)
+vector<Retornables> HuffmanCodes(vector<char> data, vector<int> freq, int size)
 
 {
     // Construct Huffman Tree
@@ -295,7 +304,25 @@ void HuffmanCodes(vector<char> data, vector<int> freq, int size)
     // the Huffman tree built above
     int arr[MAX_TREE_HT], top = 0;
 
+    vector<Retornables> listaHuff;
+    Retornables ner;
+  //  ner.base = NULL;
+  //  ner.arista = NULL;
     printCodes(root, arr, top);
+    listaHuff = cargarHuff(ner);
+
+    listaHuff.pop_back();
+
+    /*cout<<"\nPRINT DE HUFF\n";
+    for(int i=0 ; i<listaHuff.size() ; i++){
+      cout<<listaHuff[i].base<<": ";
+      vector<int> alistar = listaHuff[i].arista;
+      for(int j=0;j<alistar.size();j++){
+        cout<<alistar[j];
+      }
+      cout<<"\n";
+    }*/
+    return listaHuff;
 }
 
 
