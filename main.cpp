@@ -52,6 +52,7 @@ int main(){
     cout<<"$";
 		flag = true;
 
+
     cin.getline(entrada,300,'\n');
 
 		dividir_entrada(entrada,palabra1,palabra2,palabra3,palabra4,palabra5,palabra6);
@@ -113,7 +114,7 @@ int main(){
         flag = false;
         frecuencia.clear();
 
-        frecuencia = faste.histograma(*palabra2,digitosdif);
+        faste.histograma(*palabra2,digitosdif);
 
         /*
         for(int i=0;i<digitosdif.size();i++){
@@ -248,12 +249,17 @@ int main(){
       }
     }
     if(comando == "HUFFMAN"||comando == "Huffman"||comando == "huffman"){
-      if(*palabra2!=NULL &&  *palabra3!=NULL  &&  *palabra4!=NULL  &&  *palabra5==NULL  &&*  palabra6==NULL)
+      if(*palabra2==NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL)
       {
-        faste.frecuenciaSecuencias(digitosdif);
+        frecuencia = faste.frecuenciaSecuencias(digitosdif);
+
+        //Impresion de frecuencia y su lectura
+        for(int i=0;i<frecuencia.size();i++){
+          cout<<digitosdif[i]<<": "<<frecuencia[i]<<"\n";
+        }
       }
         else{
-          cout<<"Se envio Parametros invalidos"<<endl;
+          cout<<"Se envio Parametros invalidosaaa"<<endl;
         }
     }
     if(flag)
