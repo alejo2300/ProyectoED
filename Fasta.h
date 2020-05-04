@@ -4,6 +4,7 @@
 #include "Genoma.h"
 #include <vector>
 #include "Hufman.h"
+#include <string>
 
 
 typedef vector<Genoma> vecGenoma;
@@ -14,6 +15,8 @@ using namespace std;
 class Fasta{
 
   public:
+
+  vector<int> identaciones;
 
   void insertarGenoma(Genoma gnma)
   {
@@ -48,6 +51,7 @@ class Fasta{
       //Lectura del archivo
       int number=0;
       bool cargar=false;
+      bool iden = false;
       int conter;
       while (!archivo.eof())
       {
@@ -63,6 +67,7 @@ class Fasta{
         if(cadena[0] == '>'){//Si es el nombre de sec
 
           int conter=0;
+          iden = true;
           texto.erase(0,1);//Elimina el >
           //cout<<"\n"<<texto;
           if(number>1){
@@ -86,7 +91,11 @@ class Fasta{
 
 
         }else{//Si es secuencia
-          //cout<<"aaaase"<<texto<<"\n";
+          //cout<<texto<<"\n";
+          if(iden){
+            identaciones.push_back(texto.size());
+            iden = false;
+          }
           if(!archivo.eof() && number>0){
             for(int i = 0; cadena[i] != '\0'; i++ ){
               secuencia.push_back(cadena[i]); //Guardamos en secuencia
@@ -657,8 +666,13 @@ vector<Genoma> getVectorDeGenomas(){
     int tamSec; //Size of sequence
     string namSec; //Name of sequence
     int identSec; //Identation of a sequence
-    vector<Retornables> dicSeq; //Dictionari of all sequen
-    vector<int> vecCodes;//Vectorcode from each base
+
+    //Dictionary of huffman
+    char base[16]; //Base name
+    char* positionB[16]; //Base position
+
+    //List of codes
+    vector<char*> vecCodes;//Vectorcode from each base
   };
 
   bool codificar(string nombreArch,vector<Retornables> listaHuff){
@@ -673,6 +687,40 @@ vector<Genoma> getVectorDeGenomas(){
 
     //Variable data
     for(int i=0;i<vectorGenomas.size();i++){
+      Genoma gnma = vectorGenomas[i];
+      vector<CodigoGenetico> codigosGeneticosActual = gnma.getVectorDeCodigosGeneticos();
+      for(int j=0;j<codigosGeneticosActual.size();j++){
+        vector<char> cods = codigosGeneticosActual[j].getCodigos();
+        nuevo.tamSec = cods.size();
+        nuevo.namSec = codigosGeneticosActual[j].getDescripcion();
+        nuevo.identSec = identaciones[j];
+      }
+    }
+
+  }
+
+public:
+  void codificar(){
+    Fabin nuevo; //Filleable Fabin
+    vector<Fabin> allSec; //Fabin list of all sequence
+
+    //Fill of Fabin
+    //Set of secuence #
+    nuevo.numSecuence = conteo();  //This data is static
+
+    //Calling the funtion to convert Retornables into char list
+
+    //Variable data
+    for(int i=0;i<vectorGenomas.size();i++){
+      Genoma gnma = vectorGenomas[i];
+      vector<CodigoGenetico> codigosGeneticosActual = gnma.getVectorDeCodigosGeneticos();
+      cout<<conteo()<<" \n";
+      for(int j=0;j<codigosGeneticosActual.size();j++){
+        vector<char> cods = codigosGeneticosActual[j].getCodigos();
+        cout<<cods.size()<<" ";
+        cout<<codigosGeneticosActual[j].getDescripcion()<<" ";
+        cout<<identaciones[j]<<"\n";
+      }
 
     }
 

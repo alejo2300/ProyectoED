@@ -10,6 +10,7 @@
 struct Retornables{
   char base;
   vector<int> arista;
+  vector<char>aristachar;
 };
 vector<Retornables> listaHuffa;
 
