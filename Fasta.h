@@ -3,6 +3,8 @@
 
 #include "Genoma.h"
 #include <vector>
+#include "Hufman.h"
+
 
 typedef vector<Genoma> vecGenoma;
 
@@ -441,6 +443,7 @@ vector<int> frecuenciaSecuencias(vector<char> & digitosdif,int frecs[16]){
 
       return repeticiones;
     }
+
 }
 
 int subsecuencia (char *sequence){
@@ -647,8 +650,38 @@ vector<Genoma> getVectorDeGenomas(){
 
 
 
+  //FABIN FABIN FABIN FABIN FABIN
+
+  struct Fabin{
+    int numSecuence; //Total of sequence
+    int tamSec; //Size of sequence
+    string namSec; //Name of sequence
+    int identSec; //Identation of a sequence
+    vector<Retornables> dicSeq; //Dictionari of all sequen
+    vector<int> vecCodes;//Vectorcode from each base
+  };
+
+  bool codificar(string nombreArch,vector<Retornables> listaHuff){
+    Fabin nuevo; //Filleable Fabin
+    vector<Fabin> allSec; //Fabin list of all sequence
+
+    //Fill of Fabin
+    //Set of secuence #
+    nuevo.numSecuence = conteo();  //This data is static
+
+    //Calling the funtion to convert Retornables into char list
+
+    //Variable data
+    for(int i=0;i<vectorGenomas.size();i++){
+
+    }
+
+  }
+
 };
 
 //Fasta implementation
+
+
 
 #endif
