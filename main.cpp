@@ -201,7 +201,7 @@ int main(){
     {
       if( *palabra2!=NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL)
       {
-          
+
           flag = false;
           cout<<"prueba"<<endl;
       }
@@ -312,6 +312,7 @@ void ayuda()
 	cout<<"> guardar (guardar nombre_archivo) "<<endl;
   cout<<"> Poner todo en Huffman (Huffman)\n";
   cout<<"> Codificar secuencias en memoria(codificar nombre.fabin)\n";
+  cout<<"> Decodificar desde un .fabin (Decodificar nombre.fabin)"
 	cout<<"> salir (salir)"<<endl;
 	cout<<"_________________________________________"<<endl<<endl;
 }
