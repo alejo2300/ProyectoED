@@ -201,7 +201,7 @@ int main(){
     {
       if( *palabra2!=NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL)
       {
-          //codificar(palabra2);
+          
           flag = false;
           cout<<"prueba"<<endl;
       }
@@ -284,6 +284,8 @@ int main(){
           cout<<"Se envio Parametros invalidos"<<endl;
         }
     }
+
+
     if(flag)
     {
         cout<<"Digite un comando valido... "<<endl;
@@ -309,6 +311,7 @@ void ayuda()
 	cout<<"> enmascarar (enmascarar secuencia) "<<endl;
 	cout<<"> guardar (guardar nombre_archivo) "<<endl;
   cout<<"> Poner todo en Huffman (Huffman)\n";
+  cout<<"> Codificar secuencias en memoria(codificar nombre.fabin)\n";
 	cout<<"> salir (salir)"<<endl;
 	cout<<"_________________________________________"<<endl<<endl;
 }
