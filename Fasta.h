@@ -675,7 +675,7 @@ vector<Genoma> getVectorDeGenomas(){
     vector<char*> vecCodes;//Vectorcode from each base
   };
 
-  bool codificar(string nombreArch,vector<Retornables> listaHuff){
+  bool codificar(string cods[16],char bas[16]){
     Fabin nuevo; //Filleable Fabin
     vector<Fabin> allSec; //Fabin list of all sequence
 
@@ -683,7 +683,11 @@ vector<Genoma> getVectorDeGenomas(){
     //Set of secuence #
     nuevo.numSecuence = conteo();  //This data is static
 
-    //Calling the funtion to convert Retornables into char list
+    //Set the dictionary
+    for(int i=0;i<16;i++){
+      nuevo.base[i] = bas[i];
+      nuevo.positionB[i] = cods[i];
+    }
 
     //Variable data
     for(int i=0;i<vectorGenomas.size();i++){
