@@ -21,6 +21,8 @@ int main(){
 
   Fasta faste;
   vector<Retornables> listaHuff;
+  string cods[16];
+  char base[16];
 	char entrada[300];
   char* palabra1[300];
   char* palabra2[300];
@@ -200,9 +202,9 @@ int main(){
       if( *palabra2!=NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL)
       {
         bool result = false;
-        //result = faste.codificar();
+        faste.codificar(cods,base);
           flag = false;
-          cout<<"prueba"<<endl;
+
       }
       else
       {
@@ -270,12 +272,23 @@ int main(){
         cout<<"\nPRINT DE HUFF\n";
         for(int i=0 ; i<listaHuff.size() ; i++){
           cout<<listaHuff[i].base<<": ";
+          string uno;
           vector<int> alistar = listaHuff[i].arista;
           for(int j=0;j<alistar.size();j++){
-            cout<<alistar[j];
+            int a = alistar[j];
+            string dos;
+            dos = to_string(a);
+            uno = uno + dos;
+            //cout<<alistar[j];
+
           }
+          cout<<uno;
+          cods[i]=uno;
+          base[i]=listaHuff[i].base;
           cout<<"\n";
         }
+
+
 
         flag = false;
       }

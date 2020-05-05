@@ -669,7 +669,7 @@ vector<Genoma> getVectorDeGenomas(){
 
     //Dictionary of huffman
     char base[16]; //Base name
-    char* positionB[16]; //Base position
+    string positionB[16]; //Base position
 
     //List of codes
     vector<char*> vecCodes;//Vectorcode from each base
@@ -700,14 +700,23 @@ vector<Genoma> getVectorDeGenomas(){
   }
 
 public:
-  void codificar(){
+  void codificar(string cods[16],char bas[16]){
     Fabin nuevo; //Filleable Fabin
     vector<Fabin> allSec; //Fabin list of all sequence
 
     //Fill of Fabin
     //Set of secuence #
     nuevo.numSecuence = conteo();  //This data is static
+    //Set the dictionary
 
+
+    for(int i=0;i<16;i++){
+      nuevo.base[i] = bas[i];
+      nuevo.positionB[i] = cods[i];
+    }
+    for(int i=0;i<16;i++){
+      cout<<nuevo.base[i]<<":"<<nuevo.positionB[i]<<"\n";
+    }
     //Calling the funtion to convert Retornables into char list
 
     //Variable data
