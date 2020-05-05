@@ -202,7 +202,8 @@ int main(){
       if( *palabra2!=NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL)
       {
         bool result = false;
-        faste.codificar(cods,base);
+        faste.codificar(cods,base,*palabra2);
+        //faste.codificar(cods,base);
           flag = false;
 
       }
@@ -216,8 +217,8 @@ int main(){
       if(*palabra2!=NULL &&  *palabra3==NULL  &&  *palabra4==NULL  &&  *palabra5==NULL  &&*  palabra6==NULL)
       {
         //decodificar(palabra2);
+        faste.decodificar(*palabra2);
         flag = false;
-        cout<<"prueba"<<endl;
       }
       else
       {

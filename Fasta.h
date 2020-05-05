@@ -649,7 +649,174 @@ vector<Genoma> getVectorDeGenomas(){
 }
 
 
+//FABIN FABIN FABIN FABIN FABIN
 
+struct Fabin{
+  int numSecuence; //Total of sequence
+  int tamSec; //Size of sequence
+  char namSec[100]; //Name of sequence
+  int identSec; //Identation of a sequence
+
+  //Dictionary of huffman
+  char base[16]; //Base name
+  char positionB[16][100]; //Base position
+
+  //List of codes
+  char vecCodes[2000][100];//Vectorcode from each base
+};
+
+bool codificar(string cods[16],char bas[16],char* nombreArch){
+  Fabin nuevo; //Filleable Fabin
+  vector<Fabin> allSec; //Fabin list of all sequence
+
+  //Fill of Fabin
+  //Set of secuence #
+  nuevo.numSecuence = conteo();  //This data is static
+
+  //Set the dictionary
+  for(int i=0;i<16;i++){
+    nuevo.base[i] = bas[i];
+    strcpy(nuevo.positionB[i],cods[i].c_str());
+  }
+
+  //Variable data
+  for(int i=0;i<vectorGenomas.size();i++){
+    Genoma gnma = vectorGenomas[i];
+    vector<CodigoGenetico> codigosGeneticosActual = gnma.getVectorDeCodigosGeneticos();
+    for(int j=0;j<codigosGeneticosActual.size();j++){
+      char secCh[2000][100];
+      vector<char> cods = codigosGeneticosActual[j].getCodigos();
+      nuevo.tamSec = cods.size();
+      strcpy(nuevo.namSec,codigosGeneticosActual[j].getDescripcion().c_str());
+      nuevo.identSec = identaciones[j];
+      for(int k=0;k<cods.size();k++){
+        for(int t=0;t<16;t++){
+          if(cods[k]==nuevo.base[t]){
+            strcpy(nuevo.vecCodes[k],nuevo.positionB[t]);
+            cout<<nuevo.vecCodes[k]<<" ";
+          }
+        }
+      }
+      allSec.push_back(nuevo);
+    }
+    ofstream archP (nombreArch, ios::binary|ios::in|ios::app);
+    if (archP){
+      for(int t=0;t<allSec.size();t++){
+        archP.write((char*)&allSec[t], sizeof (allSec[t]));
+      }
+      archP.close ( );
+      cout<< "Archivo Guardado Correctamente"<<endl;
+      return true;
+    }else{
+      cout<< "NO SE PUDO GUARDAR EL ARCHIVO"<<endl;
+      return false;
+    }
+  }
+
+}
+
+/*public:
+void codificar(string cods[16],char bas[16]){
+  Fabin nuevo; //Filleable Fabin
+  vector<Fabin> allSec; //Fabin list of all sequence
+
+  //Fill of Fabin
+  //Set of secuence #
+  nuevo.numSecuence = conteo();  //This data is static
+  //Set the dictionary
+
+
+  for(int i=0;i<16;i++){
+    nuevo.base[i] = bas[i];
+    //nuevo.positionB[i] = cods[i];
+    strcpy(nuevo.positionB[i],cods[i].c_str());
+  }
+  for(int i = 0 ;i < 16 ; i++){
+    cout<<nuevo.base[i]<<":"<<nuevo.positionB[i]<<"\n";
+  }
+  //Calling the funtion to convert Retornables into char list
+
+  //Variable data
+  for(int i=0;i<vectorGenomas.size();i++){
+    Genoma gnma = vectorGenomas[i];
+    vector<CodigoGenetico> codigosGeneticosActual = gnma.getVectorDeCodigosGeneticos();
+    cout<<conteo()<<" \n";
+    for(int j=0;j<codigosGeneticosActual.size();j++){
+      char secCh[2000][100];
+      vector<char> cods = codigosGeneticosActual[j].getCodigos();
+      cout<<cods.size()<<" ";
+      char test[100];
+      strcpy(test,codigosGeneticosActual[j].getDescripcion().c_str());
+      cout<<test<<" ";
+      cout<<identaciones[j]<<"\n";
+      for(int k=0;k<cods.size();k++){
+        for(int t=0;t<16;t++){
+          if(cods[k]==nuevo.base[t]){
+            strcpy(secCh[k],nuevo.positionB[t]);
+          }
+        }
+      }
+      for(int k=0;k<cods.size();k++){
+        cout<<secCh[k]<<" ";
+      }
+      cout<<"\n";
+    }
+
+  }
+
+}*/
+
+
+void decodificar(char* nombreArch){
+  Fabin p;
+  Genoma gnma;//Nombre y <vector>CodigosGeneticos
+  CodigoGenetico codGen;//Descripcio(name) y <vector> codigo de char
+
+  ifstream f( nombreArch, ios::binary );
+
+  int counter = 0;
+  if ( f.is_open() ) {
+    gnma.setNombre(nombreArch);
+    f.read( (char *) &p, sizeof( Fabin ) );
+    for(int t=0;t<p.numSecuence;t++) {
+
+
+      cout<<"\nNumeros de secuencia: "<<p.numSecuence<<"\n";
+      cout<<"Tamano de la sec: "<<p.tamSec<<"\n";
+      cout<<"Nombre de la sec: "<<p.namSec<<"\n";
+      cout<<"Identation de la sec: "<<p.identSec<<"\n";
+      for(int i=0; i<16 ;i++){
+        cout<<p.base[i]<<" : "<<p.positionB[i]<<"\n";
+      }
+
+
+      vector<char> secuencia;
+      for(int i=0 ; i<p.tamSec ;i++){
+        //cout<<p.vecCodes[i]<<" ";
+        for(int j=0;j<16;j++){
+          if(strcmp(p.vecCodes[i],p.positionB[j])==0){
+            secuencia.push_back(p.base[j]);
+            cout<<secuencia[i];
+          }
+        }
+        if(i%p.identSec==0 && i!=0){
+          cout<<"\n";
+        }
+      }cout<<"\n";
+
+      //Cargando en memoria
+      codGen.setDescripcion(p.namSec);
+      codGen.setCodigos(secuencia);
+      codGen.setJustificacion(p.identSec);
+      gnma.insertarCodigo(codGen);
+      secuencia.clear();
+      f.read( (char *) &p, sizeof( Fabin ) );
+  }
+  insertarGenoma(gnma);
+}else{
+  cout << "Error de apertura de archivo." << endl;
+  }
+}
 
  protected:
 
@@ -659,85 +826,6 @@ vector<Genoma> getVectorDeGenomas(){
 
 
 
-  //FABIN FABIN FABIN FABIN FABIN
-
-  struct Fabin{
-    int numSecuence; //Total of sequence
-    int tamSec; //Size of sequence
-    string namSec; //Name of sequence
-    int identSec; //Identation of a sequence
-
-    //Dictionary of huffman
-    char base[16]; //Base name
-    string positionB[16]; //Base position
-
-    //List of codes
-    vector<char*> vecCodes;//Vectorcode from each base
-  };
-
-  bool codificar(string cods[16],char bas[16]){
-    Fabin nuevo; //Filleable Fabin
-    vector<Fabin> allSec; //Fabin list of all sequence
-
-    //Fill of Fabin
-    //Set of secuence #
-    nuevo.numSecuence = conteo();  //This data is static
-
-    //Set the dictionary
-    for(int i=0;i<16;i++){
-      nuevo.base[i] = bas[i];
-      nuevo.positionB[i] = cods[i];
-    }
-
-    //Variable data
-    for(int i=0;i<vectorGenomas.size();i++){
-      Genoma gnma = vectorGenomas[i];
-      vector<CodigoGenetico> codigosGeneticosActual = gnma.getVectorDeCodigosGeneticos();
-      for(int j=0;j<codigosGeneticosActual.size();j++){
-        vector<char> cods = codigosGeneticosActual[j].getCodigos();
-        nuevo.tamSec = cods.size();
-        nuevo.namSec = codigosGeneticosActual[j].getDescripcion();
-        nuevo.identSec = identaciones[j];
-      }
-    }
-
-  }
-
-public:
-  void codificar(string cods[16],char bas[16]){
-    Fabin nuevo; //Filleable Fabin
-    vector<Fabin> allSec; //Fabin list of all sequence
-
-    //Fill of Fabin
-    //Set of secuence #
-    nuevo.numSecuence = conteo();  //This data is static
-    //Set the dictionary
-
-
-    for(int i=0;i<16;i++){
-      nuevo.base[i] = bas[i];
-      nuevo.positionB[i] = cods[i];
-    }
-    for(int i=0;i<16;i++){
-      cout<<nuevo.base[i]<<":"<<nuevo.positionB[i]<<"\n";
-    }
-    //Calling the funtion to convert Retornables into char list
-
-    //Variable data
-    for(int i=0;i<vectorGenomas.size();i++){
-      Genoma gnma = vectorGenomas[i];
-      vector<CodigoGenetico> codigosGeneticosActual = gnma.getVectorDeCodigosGeneticos();
-      cout<<conteo()<<" \n";
-      for(int j=0;j<codigosGeneticosActual.size();j++){
-        vector<char> cods = codigosGeneticosActual[j].getCodigos();
-        cout<<cods.size()<<" ";
-        cout<<codigosGeneticosActual[j].getDescripcion()<<" ";
-        cout<<identaciones[j]<<"\n";
-      }
-
-    }
-
-  }
 
 };
 
