@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string.h>
 #include <string>
@@ -8,8 +7,6 @@
 #include "Fasta.h"
 #include <bits/stdc++.h>
 #include "Hufman.h"
-#include <ostream>
-#include <cstring>
 
 using namespace std;
 
@@ -18,7 +15,7 @@ using namespace std;
 void ayuda();
 std::vector<char> digitosdif;
 void dividir_entrada(char entrada[],char* palabra1[], char* palabra2[], char* palabra3[], char* palabra4[], char* palabra5[],char* palabra6[]);
-char enteroACaracter (int numero);
+
 
 int main(){
 
@@ -35,8 +32,6 @@ int main(){
   //Lista de frecuencia para HUFFMAN
   vector<int> frecuencia;
 
-
-
   int frecs[16]={0};
   char bass[16]={'A','C','G','T','U','R','Y','K','M','S','W','B','D','H','V','N'};
   *palabra2=NULL;
@@ -48,7 +43,7 @@ int main(){
   string comando;
 
 	cout<<"****************************************************************************************************************** "<<endl;
-	cout<<"Estructuras de Datos Proyecto del curso, 2020-10   \n\nFabio Camargo\nJuan Jose Bola単os\nJulian Rizo\nFelipe Becerra "<<endl;
+	cout<<"Estructuras de Datos Proyecto del curso, 2020-10   \n\nFabio Camargo\nJuan Jose Bolaños\nJulian Rizo\nFelipe Becerra "<<endl;
 	cout<<"****************************************************************************************************************** "<<endl;
 
 	//Bandera para validar entrada a algun method
@@ -179,7 +174,6 @@ int main(){
         std::cout << ' ' << *it;
   std::cout << '\n';
       }
-
 */
 
 
@@ -207,9 +201,8 @@ int main(){
       {
         bool result = false;
         //result = faste.codificar();
-        faste.codificar();
           flag = false;
-
+          cout<<"prueba"<<endl;
       }
       else
       {
@@ -269,43 +262,22 @@ int main(){
           cpybas.push_back(bass[i]);
           cpyfre.push_back(frecs[i]);
         }
-        cout<<"\n\nPOSICIONES DE HUFMAN\n";
+        cout<<"\n\nPOSICIONES DE HUFFMAN\n";
         int size = cpybas.size() / sizeof(cpybas[1]);
         listaHuff = HuffmanCodes(cpybas, cpyfre, size);
 
         //Impersion del arbol de retorno
         cout<<"\nPRINT DE HUFF\n";
         for(int i=0 ; i<listaHuff.size() ; i++){
-
           cout<<listaHuff[i].base<<": ";
-
           vector<int> alistar = listaHuff[i].arista;
-         vector <char> nuevo;
           for(int j=0;j<alistar.size();j++){
-            //cout<<alistar[j];
-            char x=enteroACaracter(alistar[j]);
-            nuevo.push_back(x);
-            cout<<x;
+            cout<<alistar[j];
           }
-          listaHuff[i].aristachar=nuevo;
           cout<<"\n";
         }
 
         flag = false;
-        //probando que quedo
-        vector<char>hola=listaHuff[0].aristachar;
-        cout<<hola[0]<<hola[1]<<hola[2]<<endl;
-
-        //Create a strings vector
-        for(int i=0;i<listaHuff.size();i++){
-          char cpy[80];
-          for(int j=0;j<listaHuff[i].aristachar.size();j++){
-            char apa = listaHuff[i].aristachar[j];
-            strcat(cpy,apa*);
-          }
-          cout<<cpy<<"\n";
-        }
-
       }
         else{
           cout<<"Se envio Parametros invalidos"<<endl;
@@ -324,9 +296,7 @@ int main(){
 };
 
 
-char enteroACaracter(int numero){
-    return numero + '0';
-}
+
 
 void ayuda()
 {
